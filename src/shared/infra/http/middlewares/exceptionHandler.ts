@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 export default function exceptionHandler(
   error: Error,
@@ -14,8 +14,6 @@ export default function exceptionHandler(
       message: error.message,
     });
   }
-
-  console.log(error);
 
   return response.status(500).json({
     status: 'error',

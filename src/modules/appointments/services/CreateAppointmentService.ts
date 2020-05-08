@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import { startOfHour } from 'date-fns';
 
 import AppError from '@shared/errors/AppError';
@@ -10,12 +11,12 @@ interface IRequestDTO {
   date: Date;
 }
 
+@injectable()
 class CreateAppointmentService {
-  private appointmentRepository: IAppointmentsRepository;
-
-  constructor(appointmentRepository: IAppointmentsRepository) {
-    this.appointmentRepository = appointmentRepository;
-  }
+  constructor(
+    @inject('AppointmentRepository')
+    private appointmentRepository: IAppointmentsRepository,
+  ) {}
 
   public async execute({
     provider_id,

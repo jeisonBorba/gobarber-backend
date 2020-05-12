@@ -17,12 +17,14 @@ describe('ListProviderDayAvailabilityService', () => {
 
   it('should be able to list the day availability from provider', async () => {
     await fakeAppointmentsRespository.create({
-      provider_id: 'user',
+      provider_id: 'provider_id',
+      user_id: 'user_id',
       date: new Date(2020, 4, 11, 14, 0, 0),
     });
 
     await fakeAppointmentsRespository.create({
-      provider_id: 'user',
+      provider_id: 'provider_id',
+      user_id: 'user_id',
       date: new Date(2020, 4, 11, 15, 0, 0),
     });
 
@@ -31,7 +33,7 @@ describe('ListProviderDayAvailabilityService', () => {
       .mockImplementationOnce(() => new Date(2020, 4, 11, 11).getTime());
 
     const availability = await listProviderDayAvailabilityService.execute({
-      provider_id: 'user',
+      provider_id: 'provider_id',
       day: 11,
       year: 2020,
       month: 5,

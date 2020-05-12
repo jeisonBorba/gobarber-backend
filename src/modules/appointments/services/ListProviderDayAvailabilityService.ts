@@ -18,7 +18,7 @@ type IResponseDTO = Array<{
 @injectable()
 class ListProviderDayAvailabilityService {
   constructor(
-    @inject('AppointmentsRepository')
+    @inject('AppointmentRepository')
     private appointmentsRepository: IAppointmentsRepository,
   ) {}
 

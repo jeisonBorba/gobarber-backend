@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import 'express-async-errors';
 
 import uploadConfig from '@config/upload';
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
+app.use(errors());
 app.use(exceptionHandler);
 
 app.listen(3333, () => {

@@ -1,3 +1,5 @@
+import { ObjectID } from 'mongodb';
+
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificationDTO';
 
@@ -12,7 +14,7 @@ class FakeNotificationsRepository implements INotificationsRepository {
   }: ICreateNotificationDTO): Promise<Notification> {
     const notification = new Notification();
 
-    Object.assign(notification, { recipient_id, content });
+    Object.assign(notification, { id: new ObjectID(), recipient_id, content });
 
     this.notifications.push(notification);
 

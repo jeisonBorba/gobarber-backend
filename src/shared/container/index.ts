@@ -4,22 +4,33 @@ import './providers';
 import '@modules/users/providers';
 
 import IAppoitmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
-import AppointmentRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentRepository';
+import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import UserRepository from '@modules/users/infra/typeorm/repositories/UserRepository';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
+
 container.registerSingleton<IAppoitmentsRepository>(
-  'AppointmentRepository',
-  AppointmentRepository,
+  'AppointmentsRepository',
+  AppointmentsRepository,
 );
 
-container.registerSingleton<IUsersRepository>('UserRepository', UserRepository);
+container.registerSingleton<IUsersRepository>(
+  'UsersRepository',
+  UsersRepository,
+);
 
 container.registerSingleton<IUserTokensRepository>(
   'UserTokensRepository',
   UserTokensRepository,
+);
+
+container.registerSingleton<INotificationsRepository>(
+  'NotificationsRepository',
+  NotificationsRepository,
 );

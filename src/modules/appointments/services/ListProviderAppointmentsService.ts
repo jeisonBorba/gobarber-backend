@@ -13,7 +13,7 @@ interface IRequestDTO {
 @injectable()
 class ListProviderAppointmentsService {
   constructor(
-    @inject('AppointmentRepository')
+    @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
   ) {}
 

@@ -15,7 +15,7 @@ interface IRequestDTO {
 class UpdateUserAvaterService {
   constructor(
     @inject('UsersRepository')
-    private userRepository: IUsersRepository,
+    private usersRepository: IUsersRepository,
 
     @inject('StorageProvider')
     private storageProvider: IStorageProvider,
@@ -25,7 +25,7 @@ class UpdateUserAvaterService {
     user_id,
     avatarFilename,
   }: IRequestDTO): Promise<User> {
-    const user = await this.userRepository.findById(user_id);
+    const user = await this.usersRepository.findById(user_id);
     if (!user) {
       throw new AppError('Only authenticated users can change avatar.', 401);
     }
@@ -38,7 +38,7 @@ class UpdateUserAvaterService {
 
     user.avatar = filename;
 
-    this.userRepository.save(user);
+    this.usersRepository.save(user);
 
     return user;
   }

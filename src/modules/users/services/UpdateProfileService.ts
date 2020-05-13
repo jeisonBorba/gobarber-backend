@@ -17,8 +17,8 @@ interface IRequestDTO {
 @injectable()
 class UpdateProfileService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
@@ -31,13 +31,13 @@ class UpdateProfileService {
     old_password,
     password,
   }: IRequestDTO): Promise<User> {
-    const user = await this.userRepository.findById(user_id);
+    const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError('User not found.');
     }
 
-    const userWithUpdatedEmail = await this.userRepository.findByEmail(email);
+    const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user_id) {
       throw new AppError('E-mail already in use.');
@@ -65,7 +65,7 @@ class UpdateProfileService {
       user.password = await this.hashProvider.generateHash(password);
     }
 
-    return this.userRepository.save(user);
+    return this.usersRepository.save(user);
   }
 }
 

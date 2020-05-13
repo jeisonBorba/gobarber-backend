@@ -12,12 +12,12 @@ interface IRequestDTO {
 @injectable()
 class ShowProfileService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) {}
 
   public async execute({ user_id }: IRequestDTO): Promise<User> {
-    const user = await this.userRepository.findById(user_id);
+    const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError('User not found.');

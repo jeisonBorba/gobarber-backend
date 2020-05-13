@@ -11,12 +11,12 @@ interface IRequestDTO {
 @injectable()
 class ListProvidersService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) {}
 
   public async execute({ user_id }: IRequestDTO): Promise<User[]> {
-    const users = await this.userRepository.findAllProviders({
+    const users = await this.usersRepository.findAllProviders({
       except_user_id: user_id,
     });
 

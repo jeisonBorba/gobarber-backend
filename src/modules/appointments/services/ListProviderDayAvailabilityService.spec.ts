@@ -1,5 +1,3 @@
-import AppError from '@shared/errors/AppError';
-
 import FakeAppointmentsRespository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderDayAvailabilityService from './ListProviderDayAvailabilityService';
 

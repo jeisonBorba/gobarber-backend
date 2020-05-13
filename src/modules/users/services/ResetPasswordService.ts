@@ -14,8 +14,8 @@ interface IRequestDTO {
 @injectable()
 class ResetPasswordService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('UserTokensRepository')
     private userTokensRepository: IUserTokensRepository,
@@ -31,7 +31,7 @@ class ResetPasswordService {
       throw new AppError('User token does not exists.');
     }
 
-    const user = await this.userRepository.findById(userToken.user_id);
+    const user = await this.usersRepository.findById(userToken.user_id);
 
     if (!user) {
       throw new AppError('User does not exists.');
@@ -46,7 +46,7 @@ class ResetPasswordService {
 
     user.password = await this.hashProvider.generateHash(password);
 
-    await this.userRepository.save(user);
+    await this.usersRepository.save(user);
   }
 }
 

@@ -13,8 +13,8 @@ interface IRequestDTO {
 @injectable()
 class SendForgotPasswordEmailService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('MailProvider')
     private mailProvider: IMailProvider,
@@ -24,7 +24,7 @@ class SendForgotPasswordEmailService {
   ) {}
 
   public async execute({ email }: IRequestDTO): Promise<void> {
-    const user = await this.userRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('User does not exists.');

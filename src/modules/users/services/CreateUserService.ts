@@ -15,22 +15,22 @@ interface IRequestDTO {
 @injectable()
 class CreateUserService {
   constructor(
-    @inject('UserRepository')
-    private userRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ name, email, password }: IRequestDTO): Promise<User> {
-    const checkUserExists = await this.userRepository.findByEmail(email);
+    const checkUserExists = await this.usersRepository.findByEmail(email);
     if (checkUserExists) {
       throw new AppError('Email address already used');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    const user = this.userRepository.create({
+    const user = this.usersRepository.create({
       name,
       email,
       password: hashedPassword,

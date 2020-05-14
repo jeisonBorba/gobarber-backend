@@ -3,7 +3,7 @@ import path from 'path';
 
 import storageConfig from '@config/storage';
 
-import IStorageProvider from '../models/IStorageProviders';
+import IStorageProvider from '../models/IStorageProvider';
 
 export default class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {

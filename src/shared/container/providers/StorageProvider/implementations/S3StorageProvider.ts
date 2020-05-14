@@ -5,7 +5,7 @@ import aws, { S3 } from 'aws-sdk';
 
 import storageConfig from '@config/storage';
 
-import IStorageProvider from '../models/IStorageProviders';
+import IStorageProvider from '../models/IStorageProvider';
 
 export default class S3StorageProvider implements IStorageProvider {
   private client: S3;

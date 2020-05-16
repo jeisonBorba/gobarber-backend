@@ -45,6 +45,10 @@ describe('CreateAppointmentService', () => {
   });
 
   it('should not be able to create two appointments on the same time', async () => {
+    jest
+      .spyOn(Date, 'now')
+      .mockImplementation(() => new Date(2020, 4, 12, 12).getTime());
+
     const appointmentDate = new Date(2020, 4, 15, 11);
 
     await createAppointmentService.execute({
@@ -93,7 +97,7 @@ describe('CreateAppointmentService', () => {
   it('should not be able to create an appointment before 8am and after 5pm', async () => {
     jest
       .spyOn(Date, 'now')
-      .mockImplementationOnce(() => new Date(2020, 4, 12, 12).getTime());
+      .mockImplementation(() => new Date(2020, 4, 12, 12).getTime());
 
     await expect(
       createAppointmentService.execute({

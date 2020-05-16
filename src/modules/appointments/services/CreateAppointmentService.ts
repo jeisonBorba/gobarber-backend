@@ -42,7 +42,7 @@ class CreateAppointmentService {
       throw new AppError("You can't create an appointment with yourself.");
     }
 
-    if (getHours(appointmentDate) < 7 || getHours(appointmentDate) > 17) {
+    if (getHours(appointmentDate) < 8 || getHours(appointmentDate) > 17) {
       throw new AppError(
         'You can only create appointments between 8am and 5pm',
       );

@@ -1,4 +1,4 @@
-#gobarberb-backend
+# gobarber-backend
 
 <h4 align="center"> 
 	🚧 GoBarber API em construção... 🚧
